@@ -1,0 +1,21 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+<div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h1 style="font-size: 2em; font-weight: bold; color: #333; text-align: center; margin-bottom: 20px;">
+        Polls
+    </h1>
+    {% if latest_question_list %}
+        <ul style="list-style: none; padding: 0;">
+        {% for question in latest_question_list %}
+            <li style="margin-bottom: 10px; padding: 10px; background-color: #e6f7ff; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <a href="{% url 'polls:detail' question.id %}" style="text-decoration: none; font-size: 1.2em; color: #007acc; font-weight: bold; transition: color 0.3s;">
+                    {{ question.question_text }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p style="font-size: 1.2em; color: #555; text-align: center;">No polls are available.</p>
+    {% endif %}
+</div>

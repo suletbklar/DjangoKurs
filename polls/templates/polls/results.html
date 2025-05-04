@@ -1,0 +1,26 @@
+<div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; background-color: #fff5f5; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h1 style="font-size: 2em; font-weight: bold; color: #ce0b0b; text-align: center; margin-bottom: 20px;">
+        {{ question.question_text }}
+    </h1>
+
+    <ul style="list-style: none; padding: 0;">
+        {% for choice in question.choice_set.all %}
+            <li style="font-size: 1.2em; color: #800000; margin-bottom: 10px; padding: 10px; background-color: #ffe6e6; border-radius: 5px;">
+                {{ choice.choice_text }} -- 
+                <span style="font-weight: bold;">{{ choice.votes }}</span> 
+                vote{{ choice.votes|pluralize }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'polls:detail' question.id %}" style="text-decoration: none; background-color: #b30000; color: white; padding: 10px 20px; border-radius: 5px; font-size: 1em; font-weight: bold; transition: background-color 0.3s; display: inline-block;">
+            Vote again?
+        </a>
+    </div>
+</div>
+<div style="text-align: center; margin-top: 20px;">
+    <a href="/" style="text-decoration: dotted; background-color: #007acc; color: white; padding: 10px 20px; border-radius: 5px; font-size: 1em; font-weight: bold; transition: background-color 0.3s; display: inline-block;">
+        Return to Home
+    </a>
+</div>
